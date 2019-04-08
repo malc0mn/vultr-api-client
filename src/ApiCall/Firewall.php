@@ -109,7 +109,7 @@ class Firewall extends AbstractApiCall
      * @param string  $subnet     IP address representing a subnet. The IP
      * address format must match with the "ip_type" parameter value.
      * @param integer $subnetSize IP prefix size in bits.
-     * @param integer $port       (optional) TCP/UDP only. This field can be an
+     * @param integer|string $port       (optional) TCP/UDP only. This field can be an
      * integer value specifying a port or a colon separated port range.
      * @param string  $direction  Direction of rule. Possible values: "in".
      *
@@ -154,7 +154,7 @@ class Firewall extends AbstractApiCall
         ];
 
         if ($port !== null) {
-            $args['port'] = (int) $port;
+            $args['port'] = $port;
         }
 
         $rule = $this->adapter->post('firewall/rule_create', $args);

@@ -209,7 +209,7 @@ class Server extends AbstractApiCall
     public function setTag($serverId, $tag) {
         $args = [
             'SUBID' => (int) $serverId,
-            'tag'    => $tag,
+            'tag' => $tag,
         ];
 
         return $this->adapter->post('server/tag_set', $args, true);

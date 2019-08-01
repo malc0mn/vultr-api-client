@@ -192,6 +192,30 @@ class Server extends AbstractApiCall
     }
 
     /**
+     * Set the tag of a virtual machine.
+     *
+     * Note tag is simply a string assign(ed) to a server. Default values in
+     * web panel are "Cache", "DNS", ... . But you can use it in a key value way
+     * like this "key:value" to make it more similar to other clouds(AWS, Azure, ...)
+     *
+     * @see https://www.vultr.com/api/#server_tag_set
+     *
+     * @param integer $serverId Unique identifier for this subscription. These
+     * can be found using the getList() call.
+     * @param string  $tag      A tag string. The tag to assign to this server.
+     *
+     * @return integer HTTP response code
+     */
+    public function setTag($serverId, $tag) {
+        $args = [
+            'SUBID' => (int) $serverId,
+            'tag' => $tag,
+        ];
+
+        return $this->adapter->post('server/tag_set', $args, true);
+    }
+
+    /**
      * Wrapper function around getList() to get the details for one server.
      *
      * @param integer $serverId Unique identifier of a subscription. Only the
